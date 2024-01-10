@@ -1,0 +1,24 @@
+class Solution {
+    public List<String> letterCombinations(String digits) {
+        
+        LinkedList<String> li= new LinkedList<String>();
+        if(digits.isEmpty()) return li;
+        String[] map=new String[]{"0","1","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+        li.add("");
+
+        for(int i=0;i<digits.length();i++)
+        {
+            int d= Character.getNumericValue(digits.charAt(i));
+            while(li.peek().length()==i)
+            {
+                String t=li.remove();
+
+                for(char s:map[d].toCharArray())
+                {
+                    li.add(t+s);
+                }
+            }
+        }
+        return li;
+    }
+}
